@@ -19,7 +19,7 @@ public class HomeController {
 
         // ✅ Hardcoded credentials
         if (username.equals("Seun") && password.equals("Samopel")) {
-            return "redirect:/items";
+            return "redirect:/dashboard";
         } else {
             // ✅ Redirect with custom error parameter
             return "redirect:/?error=Invalid username or password!";
