@@ -36,3 +36,6 @@ src/main/resources/application.properties
 
 # Local secrets
 src/main/appengine/app.yaml
+
+# Local secrets
+src/main/appengine/app.yaml
