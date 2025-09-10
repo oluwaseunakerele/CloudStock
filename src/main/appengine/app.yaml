@@ -1,7 +1,23 @@
 # src/main/appengine/app.yaml  (App Engine Standard, Java 17)
+# src/main/appengine/app.yaml  (Java 17 – App Engine Standard)
 runtime: java17
+
+# "handlers/script" are ignored on Java 17 but harmless to keep.
 handlers:
   - url: /.*
-    script: auto   # required by GAE; ignored for Java
+    script: auto
+
+# If you want exactly one instance (can omit if you prefer autoscaling)
 manual_scaling:
   instances: 1
+
+env_variables:
+  # JDBC to Cloud SQL (MySQL) via SocketFactory
+  SPRING_DATASOURCE_URL: "jdbc:mysql://google/cloudstockdb?cloudSqlInstance=cloudstock-app:us-central1:cloudstockdb&socketFactory=com.google.cloud.sql.mysql.SocketFactory&useSSL=false"
+  SPRING_DATASOURCE_USERNAME: "seun"
+  SPRING_DATASOURCE_PASSWORD: "Samopel@2002"
+  SPRING_DATASOURCE_DRIVER_CLASS_NAME: "com.mysql.cj.jdbc.Driver"
+
+  # JPA/Hibernate – you created the schema already, so don’t auto-create
+  SPRING_JPA_HIBERNATE_DDL_AUTO: "none"
+  SPRING_JPA_SHOW_SQL: "true"
